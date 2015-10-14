@@ -1,5 +1,5 @@
 //
-//  main.swift
+//  Family.swift
 //  HW_4
 //
 //  Created by Joshua Malters on 10/13/15.
@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+class Family {
+    var members: [Person]
+    
+    func householdIncome() -> Double {
+        
+    }
+}
