@@ -15,7 +15,7 @@ class Person {
     var job: Job?
     var spouse: Person?
     
-    init(firstName: String, lastName: String, age: Int, job: Job, spouse: Person) {
+    init(firstName: String, lastName: String, age: Int, job: Job?, spouse: Person?) {
         self.firstName = firstName
         self.lastName = lastName
         self.age = age
