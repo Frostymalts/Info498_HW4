@@ -34,4 +34,12 @@ class Family {
         let child = Person(firstName: "New", lastName: "Baby", age: 0, job: nil, spouse: nil)
         members.append(child)
     }
+    
+    func toString () -> String {
+        var fam = ""
+        for member in members {
+            fam += "\(member.firstName) \(member.lastName) "
+        }
+        return fam
+    }
 }

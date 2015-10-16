@@ -67,9 +67,6 @@ struct Money {
     // Accepts a Money object and converts its value to USD.
     // Returns a Double a optional.
     private func convertToUSD (val: Money) -> Double? {
-        if val.currency != "USD" {
-            return nil;
-        }
         switch val.currency.uppercaseString {
         case "USD":
             return val.amount
