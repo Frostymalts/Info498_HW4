@@ -8,9 +8,18 @@
 
 import Foundation
 
-struct Money {
+struct Money: CustomStringConvertible, Mathmatics {
     var amount: Double
     var currency: String
+    
+    init (amount: Double, currency: String) {
+        self.amount = amount
+        self.currency = currency
+    }
+    
+    var description: String {
+        return "\(amount)\(currency)"
+    }
     
     // Accepts an ammount, its currency, and the currency you want to covert that
     // value to. Returns an optional Money.
@@ -31,37 +40,37 @@ struct Money {
     // Accepts two Money objects and returns a new Money object with
     // their combined values. The returned currency is that of the second
     // Money object.
-    func add (x: Money, y: Money) -> Money? {
+    func add (x: Money, valTwo: Money) -> Money? {
         let xUSD = convert(x.amount, intialCur: x.currency, newCur: "USD")
-        let yUSD = convert(y.amount, intialCur: y.currency, newCur: "USD")
+        let yUSD = convert(valTwo.amount, intialCur: valTwo.currency, newCur: "USD")
         if xUSD == nil || yUSD == nil {
             return nil
         }
         
         let combinedValUSD = Money(amount: xUSD!.amount + yUSD!.amount, currency: "USD")
-        let otherCurrencyVal = convertUSDToOther(combinedValUSD, cur: y.currency)
+        let otherCurrencyVal = convertUSDToOther(combinedValUSD, cur: valTwo.currency)
         if otherCurrencyVal == nil {
             return nil
         }
-        return Money(amount: otherCurrencyVal!, currency: y.currency)
+        return Money(amount: otherCurrencyVal!, currency: valTwo.currency)
     }
     
     // Accepts two Money objects and returns a new Money object with
     // their subtracted values. The returned currency is that of the second
     // Money object.
-    func subtract (x: Money, y: Money) -> Money? {
+    func subtract (x: Money, valTwo: Money) -> Money? {
         let xUSD = convert(x.amount, intialCur: x.currency, newCur: "USD")
-        let yUSD = convert(y.amount, intialCur: y.currency, newCur: "USD")
+        let yUSD = convert(valTwo.amount, intialCur: valTwo.currency, newCur: "USD")
         if xUSD == nil || yUSD == nil {
             return nil
         }
         
         let combinedValUSD = Money(amount: xUSD!.amount - yUSD!.amount, currency: "USD")
-        let otherCurrencyVal = convertUSDToOther(combinedValUSD, cur: y.currency)
+        let otherCurrencyVal = convertUSDToOther(combinedValUSD, cur: valTwo.currency)
         if otherCurrencyVal == nil {
             return nil
         }
-        return Money(amount: otherCurrencyVal!, currency: y.currency)
+        return Money(amount: otherCurrencyVal!, currency: valTwo.currency)
     }
     
     // Accepts a Money object and converts its value to USD.

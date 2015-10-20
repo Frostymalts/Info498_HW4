@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Person {
+class Person: CustomStringConvertible {
     var firstName: String
     var lastName: String
     var age: Int
@@ -29,6 +29,10 @@ class Person {
         } else {
             self.spouse = nil
         }
+    }
+    
+    var description: String {
+        return toString()
     }
     
     func toString() -> String {

@@ -8,11 +8,15 @@
 
 import Foundation
 
-class Family {
+class Family: CustomStringConvertible {
     var members: [Person]
     
     init(members: [Person]) {
         self.members = members
+    }
+    
+    var description: String {
+        return "The family members are: \(toString())"
     }
     
     func householdIncome() -> Double {
